@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->unsignedBigInteger('type_id')->nullable()->after('id');
-            
+        Schema::create('types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100)->unique();
+            $table->string('color')->nullable();
+            $table->string('slug')->unique();
+            $table->timestamps();
         });
     }
 
@@ -26,7 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('projects', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('types');
     }
 };
