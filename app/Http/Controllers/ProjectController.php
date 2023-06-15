@@ -49,6 +49,7 @@ class ProjectController extends Controller
         $val_data['slug'] = Str::slug($val_data['name'], '-');
         $val_data["repo"] = Project::linkGenerator($val_data["name"]);
         $img_path = Storage::put("uploads", $val_data["image"]);
+        //dd($img_path);
         $val_data["image"] = $img_path;
         $new_project = Project::create($val_data);
         if($request["technologies"]){
